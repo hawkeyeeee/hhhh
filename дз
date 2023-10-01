@@ -1,0 +1,79 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+    bool infinity = true;
+
+    while (infinity) 
+    {
+        string tip;
+        cout << "tip (int, float, char), 'enter' if you want to end" << endl; 
+        cin >> tip;
+
+        if (tip.compare("int") == 0) 
+        {
+            int x;
+            cout << "number:" << endl; 
+            cin >> x;
+            string result = "";
+
+            while (x != 0)
+            {
+                int digit = x % 10;
+                string digitStr = to_string(digit); // преобразуем цифру в строку
+                result = digitStr + " " + result; // добавляем цифру в начало строки
+                x = x / 10;
+            }
+             cout << result << endl;
+        }
+        else if (tip.compare("float") == 0) {
+            float x;
+            cout << "number:" << endl; 
+            cin >> x;
+            string result = "";
+
+            int integerPart = (int)x;
+            float decimalPart = x - integerPart;
+
+            while (integerPart != 0) 
+            {
+                int digit = integerPart % 10;
+                string digitStr = to_string(digit); 
+                result = digitStr + " " + result;
+                integerPart = integerPart / 10;
+                
+            }
+            cout << result;
+            if (decimalPart != 0) {
+                cout << ". ";
+
+                int decimalDigits = 6; // выводим до 6 знаков после запятой
+                while (decimalDigits > 0) {
+                    decimalPart = decimalPart * 10;
+                    int digit = (int)decimalPart;
+                    cout << digit << " ";
+                    decimalPart = decimalPart - digit;
+                    decimalDigits--;
+                }
+            }
+            cout << endl;
+        }
+        else if (tip.compare("char") == 0) {
+            string word;
+            cout << "Enter word: ";
+            cin >> word;
+
+            for (int i = 0; i < word.length(); i++) {
+                char letter = word[i];
+                cout << letter << " ";
+            }
+            cout << endl;
+        }
+        else if (tip == "enter") {
+            infinity = false;
+        }
+    }
+
+    return 0;
+}
